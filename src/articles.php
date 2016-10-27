@@ -2,10 +2,11 @@
 	$db = new DB();
 	
 	$result = $db->query("SELECT * FROM articles;");
+    $db->close();
 	
 	foreach($result as $article)
 	{
-		echo "ID: " . $article['id'] . " Írta: " . $article['ownerid'] . " Dátum: " . $article['date'] . " Szöveg: " . $article['text'] . "<br>";	
+		echo '<a href="read.php?id='. $article['id'] . '">Read</a>' .  $article['title'] . "<br>";
 	}
 
 

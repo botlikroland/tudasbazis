@@ -19,6 +19,7 @@ class Utilities
             if($newpw == $newpw2)
             {
                 $db->query("UPDATE login SET password = MD5('$newpw') where id = '$userid'");
+                $db->close();
                 FlashMessage::setMessage("Sikeres jelszó változtatás!");
                 header("Location: /main.php");
             }
@@ -44,6 +45,7 @@ class Utilities
         $text = $_POST['text'];
 
         $db->update("INSERT INTO articles (ownerid,date,text) VALUES ('$userid','$currentTime','$text');");
+        $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!");
         header("Location: /main.php");
     }
@@ -64,14 +66,13 @@ class Utilities
         $password = $db->escape($_POST['password']);
 
         $result = $db->query("SELECT * FROM login WHERE username = '$username' AND password = MD5('$password');");
+        $db->close();
 
         if(count($result)){
             $_SESSION['username'] = $username;
             $_SESSION['userid']   = $result[0]['id'];
-            $db->close();
         } else {
             FlashMessage::setMessage("Sikertelen bejelentkezés!");
-            $db->close();
             header("Location: /login.php");
         }
     }
@@ -88,9 +89,11 @@ class Utilities
             $_SESSION['username'] = $username;
             $userid = $db->query("SELECT id FROM login WHERE username = '$username' AND password = MD5('$password');");
             $_SESSION['userid']   = $userid[0]['id'];
+            $db->close();
         }
         else
         {
+            $db->close();
             header("Location: /login.php");
         }
     }
