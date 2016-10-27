@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2016. Okt 22. 22:01
+-- Létrehozás ideje: 2016. Okt 27. 20:19
 -- Kiszolgáló verziója: 10.1.16-MariaDB
 -- PHP verzió: 5.6.24
 
@@ -30,6 +30,7 @@ CREATE TABLE `articles` (
   `id` int(11) NOT NULL,
   `ownerid` int(11) NOT NULL,
   `date` datetime NOT NULL,
+  `title` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `text` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,8 +38,9 @@ CREATE TABLE `articles` (
 -- A tábla adatainak kiíratása `articles`
 --
 
-INSERT INTO `articles` (`id`, `ownerid`, `date`, `text`) VALUES
-(3, 2, '2016-10-22 21:22:34', 'szia roli vagyok és ez az első cikk hihihihahaha\r\njejeje\r\nez már a harmadik sor\r\nűúűú');
+INSERT INTO `articles` (`id`, `ownerid`, `date`, `title`, `text`) VALUES
+(3, 2, '2016-10-22 21:22:34', 'Cím adat egy', 'szia roli vagyok és ez az első cikk hihihihahaha\r\njejeje\r\nez már a harmadik sor\r\nűúűú'),
+(4, 2, '2016-10-27 18:27:53', 'Cím adat 2', 'asdasdsadadsad');
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT a táblához `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT a táblához `login`
 --
