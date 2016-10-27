@@ -4,8 +4,7 @@ session_start();
 unset($_SESSION['userid']);
 include_once('FlashMessage.php');
 
-$flashMessage = new FlashMessage();
-$flashMessage->show();
+FlashMessage::show();
 
 
 ?>
