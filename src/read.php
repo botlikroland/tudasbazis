@@ -10,7 +10,7 @@ echo '<a href="main.php">Vissza a főoldalra</a>';
 
 foreach($result as $article)
 {
-    echo  "<h1>" . $article['title'] . "</h1><br><br>" . $article['text'];
+    echo  "<h2>" . $article['title'] . "</h1><br><br>" . $article['text'];
 }
 
 

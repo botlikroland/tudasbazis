@@ -42,9 +42,10 @@ class Utilities
 
         $userid = $_SESSION['userid'];
         $currentTime = date("Y-m-d H:i:s", time());
+		$title = $_POST['title'];
         $text = $_POST['text'];
 
-        $db->update("INSERT INTO articles (ownerid,date,text) VALUES ('$userid','$currentTime','$text');");
+        $db->update("INSERT INTO articles (ownerid,date,title,text) VALUES ('$userid','$currentTime','$title','$text');");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!");
         header("Location: /main.php");
