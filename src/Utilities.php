@@ -45,9 +45,38 @@ class Utilities
 		$title = $_POST['title'];
         $text = $_POST['text'];
 
-        $db->update("INSERT INTO articles (ownerid,date,title,text) VALUES ('$userid','$currentTime','$title','$text');");
+        $db->update("INSERT INTO articles (ownerid,created,modified,title,text) VALUES ('$userid','$currentTime','$currentTime','$title','$text');");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!");
+        header("Location: /main.php");
+    }
+	
+	public static function UpdateArticle()
+    {
+        $db = new DB();
+
+        $userid = $_SESSION['userid'];
+        $currentTime = date("Y-m-d H:i:s", time());
+		$title = $_POST['title'];
+        $text = $_POST['text'];
+		$articleID = $_GET['id'];
+		
+        $db->update("UPDATE articles SET modified='$currentTime', title='$title', text='$text' WHERE id='$articleID';");
+        $db->close();
+        FlashMessage::setMessage("Sikeres cikk módosítás!");
+        header("Location: /main.php");
+    }
+	
+	public static function DeleteArticle()
+    {
+        $db = new DB();
+
+        $userid = $_SESSION['userid'];
+        $articleID = $_GET['id'];
+		
+        $db->update("DELETE FROM articles WHERE id='$articleID';");
+        $db->close();
+        FlashMessage::setMessage("Cikk törölve!");
         header("Location: /main.php");
     }
 

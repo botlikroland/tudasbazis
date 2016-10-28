@@ -35,6 +35,18 @@
             Utilities::SaveArticle();
 		}
 		
+		//CIKK MÓDOSÍTÁSA
+		if(isset($_POST['updateArticle']))
+		{
+            Utilities::UpdateArticle();
+		}
+		
+		//CIKK TÖRLÉSE
+		if(isset($_POST['deleteArticle']))
+		{
+            Utilities::DeleteArticle();
+		}
+		
 		//VISSZA A FŐOLDALRA
 		if(isset($_POST['backMain']))
 		{
