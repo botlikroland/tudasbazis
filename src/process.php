@@ -63,7 +63,7 @@
 	}
 	else
     {
-		if(isset($_POST['username']) && isset($_POST['password']))
+		if(isset($_POST['email']) && isset($_POST['password']))
 		{
 			//BEJELENTKEZIK
 			if(isset($_POST['login']))

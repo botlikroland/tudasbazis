@@ -92,14 +92,14 @@ class Utilities
     {
         $db = new DB();
 
-        $username = $db->escape($_POST['username']);
+        $email = $db->escape($_POST['email']);
         $password = $db->escape($_POST['password']);
 
-        $result = $db->query("SELECT * FROM login WHERE username = '$username' AND password = MD5('$password');");
+        $result = $db->query("SELECT * FROM login WHERE email = '$email' AND password = MD5('$password');");
         $db->close();
 
         if(count($result)){
-            $_SESSION['username'] = $username;
+            $_SESSION['firstname'] = $result[0]['firstname'];
             $_SESSION['userid']   = $result[0]['id'];
         } else {
             FlashMessage::setMessage("Sikertelen bejelentkezés!");
@@ -111,19 +111,21 @@ class Utilities
     {
         $db = new DB();
 
-        $username = $db->escape($_POST['username']);
+        $email = $db->escape($_POST['email']);
         $password = $db->escape($_POST['password']);
 
-        if(!($db->query("SELECT * FROM login WHERE username = '$username';"))) {
-            $db->update("INSERT INTO login (username,password) VALUES ('$username',MD5('$password'));");
-            $_SESSION['username'] = $username;
-            $userid = $db->query("SELECT id FROM login WHERE username = '$username' AND password = MD5('$password');");
-            $_SESSION['userid']   = $userid[0]['id'];
+        if(!($db->query("SELECT * FROM login WHERE email = '$email';"))) {
+            $db->update("INSERT INTO login (email,password) VALUES ('$email',MD5('$password'));");
+            $result = $db->query("SELECT * FROM login WHERE email = '$email' AND password = MD5('$password');");
+			$_SESSION['firstname'] = $result[0]['firstname'];
+            $_SESSION['userid']   = $result[0]['id'];
             $db->close();
+			FlashMessage::setMessage("Sikeres regisztráció!");
         }
         else
         {
             $db->close();
+			FlashMessage::setMessage("Már létezik ilyen felhasználó!");
             header("Location: /login.php");
         }
     }

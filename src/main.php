@@ -14,7 +14,7 @@ include_once('process.php');
 	</head>
 	<body>
 <?php 
-	echo "Üdvözöllek ". $_SESSION['username'] . "!";
+	echo "Üdvözöllek ". $_SESSION['firstname'] . "!";
 ?>	
 	
 <form action="main.php" method="post">

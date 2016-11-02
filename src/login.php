@@ -19,17 +19,26 @@ FlashMessage::show();
 	</head>
 	<body>
 	
+
 	
-	
-	
-	
-	
+	<div class="container">
+	<div class="col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4">
 <form action="main.php" method="post">
-	Felhasználó név: <input type="text"     name="username" /><br />
-	Jelszó: 		 <input type="password" name="password" /><br />
-	<input type="submit" name="login" value="Bejelentkezés" />
-	<input type="submit" name="register"  value="Regisztráció" />
+	<div class="form-group">
+		<label for="inputEmail">E-mail cím</label>
+		<input type="email" class="form-control" name="email" placeholder="E-mail cím">
+	</div>
+	<div class="form-group">
+		<label for="inputPassword">Jelszó</label>
+		<input type="password" class="form-control" name="password" placeholder="Jelszó">
+	</div>
+	<button type="submit" name="login" class="btn btn-primary">Bejelentkezés</button>
+	
+	</div>
 </form>	
+</div>
+</div>
+
 
 
 	<script src="js/jquery-3.1.1.min.js"></script>
