@@ -3,17 +3,24 @@
 class FlashMessage
 {
 
-    public static function setMessage($szo)
+    public static function setMessage($message, $level)
     {
-        $_SESSION['flashMessage'] = $szo;
+        $_SESSION['flashMessage'] = $message;
+		$_SESSION['flashMessageLevel'] = $level;
     }
 
     public static function show()
     {		
 		if (isset($_SESSION['flashMessage']) && $_SESSION['flashMessage']!="")
 		{
-			echo '<div id="alert">'.$_SESSION['flashMessage'].'</div>';
-			FlashMessage::setMessage("");
+
+			echo '<div class="alert alert-'.$_SESSION['flashMessageLevel'].'">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				'.$_SESSION['flashMessage'].'
+				</div>';
+			
+			
+			FlashMessage::setMessage("","");
 		}
 		
     }

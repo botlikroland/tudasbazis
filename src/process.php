@@ -5,29 +5,18 @@
 	include_once('FlashMessage.php');
     include_once('Utilities.php');
 
-    FlashMessage::show();
-    
+	
+	FlashMessage::show();
+	
 	//BE VAN JELENTKEZVE
 	if(isset($_SESSION['userid']))
     {
-	
-		//JELSZÓT AKAR VÁLTOZTATNI
-		if(isset($_POST['changepw']))
-		{
-			header("Location: /changepw.php");
-		}
 		
 		//TÉNYLEG JELSZÓT VÁLTOZTAT
 		if(isset($_POST['change']))
 		{
             Utilities::ChangePassword();
 		}
-		
-		//ÚJ CIKK
-		if(isset($_POST['newArticle']))
-		{
-			header("Location: /newArticle.php");
-		}	
 
 		//ÚJ CIKK MENTÉSE
 		if(isset($_POST['saveArticle']))
@@ -50,11 +39,11 @@
 		//VISSZA A FŐOLDALRA
 		if(isset($_POST['backMain']))
 		{
-			header("Location: /main.php");
+			header("Location: /index.php");
 		}	
 		
 		//KIJELENTKEZIK
-		if(isset($_POST['logout']))
+		if(isset($_GET['logout']))
 		{
 			Utilities::Logout();
 		}
@@ -77,5 +66,9 @@
                 Utilities::Register();
             }
         }
+		else
+		{
+			header("Location: /login.php");
+		}
 	}
 ?>

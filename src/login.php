@@ -23,7 +23,7 @@ FlashMessage::show();
 	
 	<div class="container">
 	<div class="col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4">
-<form action="main.php" method="post">
+<form action="index.php" method="post">
 	<div class="form-group">
 		<label for="inputEmail">E-mail cím</label>
 		<input type="email" class="form-control" name="email" placeholder="E-mail cím">

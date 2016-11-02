@@ -20,18 +20,18 @@ class Utilities
             {
                 $db->query("UPDATE login SET password = MD5('$newpw') where id = '$userid'");
                 $db->close();
-                FlashMessage::setMessage("Sikeres jelszó változtatás!");
-                header("Location: /main.php");
+                FlashMessage::setMessage("Sikeres jelszó változtatás!","success");
+                header("Location: /index.php");
             }
             else
             {
-                FlashMessage::setMessage("Nem egyezik a két új jelszó!");
+                FlashMessage::setMessage("Nem egyezik a két új jelszó!","danger");
                 header("Location: /changepw.php");
             }
         }
         else
         {
-            FlashMessage::setMessage("Nem ez a régi jelszó!");
+            FlashMessage::setMessage("Nem ez a régi jelszó!","danger");
             header("Location: /changepw.php");
         }
     }
@@ -47,8 +47,8 @@ class Utilities
 
         $db->update("INSERT INTO articles (ownerid,created,modified,title,text) VALUES ('$userid','$currentTime','$currentTime','$title','$text');");
         $db->close();
-        FlashMessage::setMessage("Sikeres cikk mentés!");
-        header("Location: /main.php");
+        FlashMessage::setMessage("Sikeres cikk mentés!","success");
+        header("Location: /index.php");
     }
 	
 	public static function UpdateArticle()
@@ -63,8 +63,8 @@ class Utilities
 		
         $db->update("UPDATE articles SET modified='$currentTime', title='$title', text='$text' WHERE id='$articleID';");
         $db->close();
-        FlashMessage::setMessage("Sikeres cikk módosítás!");
-        header("Location: /main.php");
+        FlashMessage::setMessage("Sikeres cikk módosítás!","success");
+        header("Location: /index.php");
     }
 	
 	public static function DeleteArticle()
@@ -76,33 +76,32 @@ class Utilities
 		
         $db->update("DELETE FROM articles WHERE id='$articleID';");
         $db->close();
-        FlashMessage::setMessage("Cikk törölve!");
-        header("Location: /main.php");
+        FlashMessage::setMessage("Cikk törölve!","success");
+        header("Location: /index.php");
     }
 
 
     public static function Logout()
     {
         unset($_SESSION['userid']);
-        FlashMessage::setMessage("Sikeres kijelentkezés!");
+        FlashMessage::setMessage("Sikeres kijelentkezés!","success");
         header("Location: /login.php");
     }
 
-    public  static function Login()
+    public static function Login()
     {
         $db = new DB();
 
         $email = $db->escape($_POST['email']);
         $password = $db->escape($_POST['password']);
 
-        $result = $db->query("SELECT * FROM login WHERE email = '$email' AND password = MD5('$password');");
+        $result = $db->query("SELECT id FROM login WHERE email = '$email' AND password = MD5('$password');");
         $db->close();
 
         if(count($result)){
-            $_SESSION['firstname'] = $result[0]['firstname'];
             $_SESSION['userid']   = $result[0]['id'];
         } else {
-            FlashMessage::setMessage("Sikertelen bejelentkezés!");
+            FlashMessage::setMessage("Sikertelen bejelentkezés!","danger");
             header("Location: /login.php");
         }
     }
@@ -120,14 +119,35 @@ class Utilities
 			$_SESSION['firstname'] = $result[0]['firstname'];
             $_SESSION['userid']   = $result[0]['id'];
             $db->close();
-			FlashMessage::setMessage("Sikeres regisztráció!");
+			FlashMessage::setMessage("Sikeres regisztráció!","success");
         }
         else
         {
             $db->close();
-			FlashMessage::setMessage("Már létezik ilyen felhasználó!");
+			FlashMessage::setMessage("Már létezik ilyen felhasználó!","danger");
             header("Location: /login.php");
         }
+    }
+	
+	public static function GetName()
+    {
+        $db = new DB();
+
+        $id = $_SESSION['userid'];
+
+        $result = $db->query("SELECT lastname, firstname FROM login WHERE id = '$id';");
+        $db->close();
+
+        if(count($result))
+		{
+			$nev = $result[0]['lastname'];
+			$nev .= " " . $result[0]['firstname'];
+			return $nev;
+		}
+		else
+		{
+			return "";
+		}
     }
 
 
