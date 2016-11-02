@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2016. Okt 28. 17:39
+-- Létrehozás ideje: 2016. Nov 02. 14:17
 -- Kiszolgáló verziója: 10.1.16-MariaDB
 -- PHP verzió: 5.6.24
 
@@ -52,17 +52,19 @@ INSERT INTO `articles` (`id`, `ownerid`, `created`, `modified`, `title`, `text`)
 
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
-  `username` varchar(16) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `email` varchar(16) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `lastname` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `firstname` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- A tábla adatainak kiíratása `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `password`) VALUES
-(2, 'Roli', '7815696ecbf1c96e6894b779456d330e'),
-(3, 'kisnykee', '00a3a38e79b300f9538b952c0f2cb9ff');
+INSERT INTO `login` (`id`, `email`, `password`, `lastname`, `firstname`) VALUES
+(2, 'roli@gmail.com', '7815696ecbf1c96e6894b779456d330e', 'Botlik', 'Roland'),
+(3, 'kisnykee', '00a3a38e79b300f9538b952c0f2cb9ff', '', '');
 
 --
 -- Indexek a kiírt táblákhoz
