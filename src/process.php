@@ -11,17 +11,28 @@
 	//BE VAN JELENTKEZVE
 	if(isset($_SESSION['userid']))
     {
+		//ADMIN-------------------------------------
+		
+		//JELSZÓT VÁLTOZTAT [ADMIN]
+		if(isset($_POST['adminchange']))
+		{
+            Utilities::AdminChangePassword();
+		}
+		
+		//FELHASZNÁLÓ FELVITEL[ADMIN]
+		if(isset($_POST['adminadduser']))
+		{
+            Utilities::AdminAddUser();
+		}
+		
+		
+		
+		//ADMIN-VÉGE--------------------------------
 		
 		//TÉNYLEG JELSZÓT VÁLTOZTAT
 		if(isset($_POST['change']))
 		{
             Utilities::ChangePassword();
-		}
-		
-		//TÉNYLEG JELSZÓT VÁLTOZTAT [ADMIN]
-		if(isset($_POST['adminchange']))
-		{
-            Utilities::AdminChangePassword();
 		}
 
 		//ÚJ CIKK MENTÉSE

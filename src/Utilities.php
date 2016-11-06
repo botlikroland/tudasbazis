@@ -118,29 +118,6 @@ class Utilities
             header("Location: /login.php");
         }
     }
-
-    public static function Register()
-    {
-        $db = new DB();
-
-        $email = $db->escape($_POST['email']);
-        $password = $db->escape($_POST['password']);
-
-        if(!($db->query("SELECT * FROM login WHERE email = '$email';"))) {
-            $db->update("INSERT INTO login (email,password) VALUES ('$email',MD5('$password'));");
-            $result = $db->query("SELECT * FROM login WHERE email = '$email' AND password = MD5('$password');");
-			$_SESSION['firstname'] = $result[0]['firstname'];
-            $_SESSION['userid']   = $result[0]['id'];
-            $db->close();
-			FlashMessage::setMessage("Sikeres regisztráció!","success");
-        }
-        else
-        {
-            $db->close();
-			FlashMessage::setMessage("Már létezik ilyen felhasználó!","danger");
-            header("Location: /login.php");
-        }
-    }
 	
 	public static function GetNameById()
     {
@@ -177,6 +154,29 @@ class Utilities
 		}
 		return $output;
 	}
+	
+	public static function AdminAddUser()
+    {
+        $db = new DB();
+
+        $email = $db->escape($_POST['email']);
+        $password = $db->escape($_POST['password']);
+		$lastname = $db->escape($_POST['lastname']);
+		$firstname = $db->escape($_POST['firstname']);
+		
+
+        if(!($db->query("SELECT * FROM login WHERE email = '$email';"))) {
+            $db->update("INSERT INTO login (email,password, lastname, firstname) VALUES ('$email',MD5('$password'),'$lastname','$firstname');");
+            $db->close();
+			FlashMessage::setMessage("Sikeres felvitel!","success");
+        }
+        else
+        {
+            $db->close();
+			FlashMessage::setMessage("Már létezik ilyen felhasználó!","danger");
+            header("Location: /adminadduser.php");
+        }
+    }
 	
 	
 
