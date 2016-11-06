@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2016. Nov 02. 14:17
+-- Létrehozás ideje: 2016. Nov 06. 19:23
 -- Kiszolgáló verziója: 10.1.16-MariaDB
 -- PHP verzió: 5.6.24
 
@@ -63,8 +63,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `email`, `password`, `lastname`, `firstname`) VALUES
-(2, 'roli@gmail.com', '7815696ecbf1c96e6894b779456d330e', 'Botlik', 'Roland'),
-(3, 'kisnykee', '00a3a38e79b300f9538b952c0f2cb9ff', '', '');
+(2, 'roli@gmail.com', '47bce5c74f589f4867dbd57e9ca9f808', 'Botlik', 'Roland'),
+(3, 'kisnykee', '00a3a38e79b300f9538b952c0f2cb9ff', 'Kun', 'Krisztina');
 
 --
 -- Indexek a kiírt táblákhoz

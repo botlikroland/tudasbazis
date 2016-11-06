@@ -1,6 +1,6 @@
 <?php
 include_once('process.php');
-$nev = Utilities::GetName();
+$nev = Utilities::GetNameById();
 
 
 
@@ -24,6 +24,12 @@ $nev = Utilities::GetName();
         </ul>
         <ul class="nav navbar-nav navbar-right">
 			<li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span><?php echo $nev ?></li>
+			<li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                <ul role="menu" class="dropdown-menu">
+                    <li><a href="adminchangepw.php">Jelszó változtatás</a></li>
+                </ul>
+            </li>
 			<li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">Beállítások <b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">

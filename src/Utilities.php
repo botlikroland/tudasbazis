@@ -35,6 +35,19 @@ class Utilities
             header("Location: /changepw.php");
         }
     }
+	
+	public static function AdminChangePassword()
+    {
+        $db = new DB();
+
+        $userid = $_POST['selectedname'];
+        $newpw = $db->escape($_POST['newpw']);
+		
+        $db->query("UPDATE login SET password = MD5('$newpw') where id = '$userid'");
+        $db->close();
+        FlashMessage::setMessage("Sikeres jelszó változtatás!","success");
+        header("Location: /index.php");
+    }
 
     public static function SaveArticle()
     {
@@ -129,7 +142,7 @@ class Utilities
         }
     }
 	
-	public static function GetName()
+	public static function GetNameById()
     {
         $db = new DB();
 
@@ -149,6 +162,23 @@ class Utilities
 			return "";
 		}
     }
+	
+	public static function GetNameList()
+	{
+		$db = new DB();
+		
+		$result = $db->query("SELECT lastname, firstname, id FROM login ORDER BY lastname, firstname;");
+		$db->close();
+		
+		$output = "";
+		foreach($result as $name)
+		{
+			$output .= '<option value="' . $name['id'] . '">' . $name['lastname'] . " " . $name['firstname'] . "</option>";
+		}
+		return $output;
+	}
+	
+	
 
 
 }

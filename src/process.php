@@ -17,6 +17,12 @@
 		{
             Utilities::ChangePassword();
 		}
+		
+		//TÉNYLEG JELSZÓT VÁLTOZTAT [ADMIN]
+		if(isset($_POST['adminchange']))
+		{
+            Utilities::AdminChangePassword();
+		}
 
 		//ÚJ CIKK MENTÉSE
 		if(isset($_POST['saveArticle']))
