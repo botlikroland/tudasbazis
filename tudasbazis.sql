@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2016. Nov 06. 19:23
+-- Létrehozás ideje: 2016. Nov 10. 19:53
 -- Kiszolgáló verziója: 10.1.16-MariaDB
 -- PHP verzió: 5.6.24
 
@@ -52,7 +52,7 @@ INSERT INTO `articles` (`id`, `ownerid`, `created`, `modified`, `title`, `text`)
 
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
-  `email` varchar(16) NOT NULL,
+  `email` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `lastname` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
@@ -64,7 +64,7 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `email`, `password`, `lastname`, `firstname`) VALUES
 (2, 'roli@gmail.com', '47bce5c74f589f4867dbd57e9ca9f808', 'Botlik', 'Roland'),
-(3, 'kisnykee', '00a3a38e79b300f9538b952c0f2cb9ff', 'Kun', 'Krisztina');
+(3, 'kisnykee@gmail.com', '00a3a38e79b300f9538b952c0f2cb9ff', 'Kun', 'Krisztina');
 
 --
 -- Indexek a kiírt táblákhoz
