@@ -27,9 +27,10 @@ $nev = Utilities::GetNameById();
 			<li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">
-                    <li><a href="adminchangepw.php">Jelszó változtatás</a></li>
-					<li><a href="adminadduser.php">Felhasználó felvitel</a></li>
-                </ul>
+                <!--<li><a href="adminchangepw.php">Jelszó változtatás</a></li>-->
+				<!--<li><a href="adminadduser.php">Felhasználó felvitel</a></li>-->
+					<li><a href="adminusercontrol.php">Felhasználó kezelés</a></li>
+				</ul>
             </li>
 			<li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">Beállítások <b class="caret"></b></a>

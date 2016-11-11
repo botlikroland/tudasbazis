@@ -93,7 +93,6 @@ class Utilities
         header("Location: /index.php");
     }
 
-
     public static function Logout()
     {
         unset($_SESSION['userid']);
@@ -144,13 +143,13 @@ class Utilities
 	{
 		$db = new DB();
 		
-		$result = $db->query("SELECT lastname, firstname, id FROM login ORDER BY lastname, firstname;");
+		$result = $db->query("SELECT lastname, firstname, id, email FROM login ORDER BY lastname, firstname;");
 		$db->close();
 		
 		$output = "";
 		foreach($result as $name)
 		{
-			$output .= '<option value="' . $name['id'] . '">' . $name['lastname'] . " " . $name['firstname'] . "</option>";
+			$output .= '<option value="' . $name['id'] . '" data-subtext="' . $name['email'] . '">' . $name['lastname'] . " " . $name['firstname'] . "</option>";
 		}
 		return $output;
 	}
