@@ -2,7 +2,9 @@
 	include_once('process.php');
 	$names = Utilities::GetNameList();
 	
+	
 ?>
+
 
 <html>
 	<head>
@@ -25,7 +27,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="user">Felhasználó</label>
 				<div class="col-md-4">
-					<select class="selectpicker" data-live-search="true" name="selectedname">
+					<select id="selectedname" class="selectpicker" data-live-search="true" name="selectedname">
 						<?php echo $names; ?>
 					</select>
 				</div>
@@ -57,13 +59,44 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Felhasználó módosítás</h4>
       </div>
-      <div class="modal-body">
-        asd
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
-        <button type="button" class="btn btn-success">Módosít</button>
-      </div>
+	  <form action="index.php" method="post" class="form-horizontal">
+		<div class="modal-body">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="lastname">Vezetéknév</label>
+					<div class="col-md-4">
+						<input name="lastname" type="text" class="form-control input-md" id="lastname">
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="firstname">Keresztnév</label>
+					<div class="col-md-4">
+						<input name="firstname" type="text" class="form-control input-md">
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="email">E-mail</label>
+					<div class="col-md-4">
+						<input name="email" type="text" class="form-control input-md">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="newpw">Jelszó</label>
+					<div class="col-md-4">
+						<input name="newpw" type="password" class="form-control input-md">
+					</div>
+				</div>
+				
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+			<button type="submit" class="btn btn-success">Módosít</button>
+		</div>
+	  </form>
     </div>
   </div>
 </div>
@@ -104,8 +137,19 @@
   </div>
 </div>
 
+
+ 
+
+	
+
+
 	<script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
+	<script>
+$("#userModModal").on("shown.bs.modal", function (event) {
+
+})
+</script>
 	</body>
 </html>
