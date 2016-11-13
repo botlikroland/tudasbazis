@@ -139,18 +139,17 @@ class Utilities
 		}
     }
 	
-	public static function GetUserDataById($id)
+	public static function GetUserDataById()
     {
         $db = new DB();
+		
+		$id = $_POST['id'];
 
         $result = $db->query("SELECT lastname, firstname, email FROM login WHERE id = '$id';");
         $db->close();
-
-		$data['lastname'] = $result[0]['lastname'];
-		$data['firstname'] = $result[0]['firstname'];
-		$data['email'] = $result[0]['email'];
+		$data = array("lastname"=>$result[0]["lastname"],"firstname"=> $result[0]["firstname"], "email"=>$result[0]["email"]);
 		
-		return $data;
+		echo json_encode($data);
     }
 	
 	public static function GetNameList()

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	session_start();
 	
 	include_once('db.php');
@@ -25,7 +25,10 @@
             Utilities::AdminAddUser();
 		}
 		
-		
+		if(isset($_POST['id']))
+		{
+			Utilities::GetUserDataById();
+		}
 		
 		//ADMIN-VÉGE--------------------------------
 		

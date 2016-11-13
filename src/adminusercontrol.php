@@ -72,14 +72,14 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="firstname">Keresztnév</label>
 					<div class="col-md-4">
-						<input name="firstname" type="text" class="form-control input-md">
+						<input name="firstname" type="text" class="form-control input-md" id="firstname">
 					</div>
 				</div>
 		
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">E-mail</label>
 					<div class="col-md-4">
-						<input name="email" type="text" class="form-control input-md">
+						<input name="email" type="text" class="form-control input-md" id="email">
 					</div>
 				</div>
 				
@@ -137,19 +137,29 @@
   </div>
 </div>
 
-
- 
-
-	
-
-
 	<script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script>
 $("#userModModal").on("shown.bs.modal", function (event) {
-
-})
+	var id = $("#selectedname").val();
+	var modal = $(this);
+	$.ajax({
+		type: 'POST',
+		url: 'process.php',
+		data: "id=" + id,
+		dataType: 'json',
+		success: function(data)
+		{	
+			modal.find(".modal-body #lastname").val(data.lastname);
+			modal.find(".modal-body #firstname").val(data.firstname);
+			modal.find(".modal-body #email").val(data.email);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+          alert(errorThrown);
+		}   
+	});
+});
 </script>
 	</body>
 </html>
