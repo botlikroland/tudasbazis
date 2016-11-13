@@ -25,7 +25,7 @@
             Utilities::AdminAddUser();
 		}
 		
-		if(isset($_POST['adminupdateuserid']))
+		if(isset($_POST['getuserdatabyid']))
 		{
 			Utilities::GetUserDataById();
 		}
@@ -33,6 +33,11 @@
 		if(isset($_POST['adminupdateuser']))
 		{
             Utilities::AdminUpdateUser();
+		}
+		
+		if(isset($_POST['admindeleteuser']))
+		{
+            Utilities::AdminDeleteUser();
 		}
 		
 		//ADMIN-VÉGE--------------------------------

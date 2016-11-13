@@ -44,7 +44,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="change"></label>
 				<div class="col-md-8">
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#userNewModal">Új felhasználó</button>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#newUserModal">Új felhasználó</button>
 				</div>
 			</div>
 			
@@ -107,33 +107,89 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Felhasználó törlés</h4>
-      </div>
-      <div class="modal-body">
-        Biztosan törölni szeretnéd a felhasználót?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
-        <button type="button" class="btn btn-danger">Töröl</button>
-      </div>
+        <h4 class="modal-title" id="myModalLabel">Felhasználó törlése</h4>
+		</div>
+		<form action="index.php" method="post" class="form-horizontal">
+		<div class="modal-body">
+			<fieldset>
+				Biztosan törölni szeretnéd a felhasználót?
+				<input name="userid" type="hidden" class="form-control input-md" id="userid">
+			
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="lastname">Vezetéknév</label>
+					<div class="col-md-4">
+						<input name="lastname" type="text" class="form-control input-md" id="lastname" disabled>
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="firstname">Keresztnév</label>
+					<div class="col-md-4">
+						<input name="firstname" type="text" class="form-control input-md" id="firstname" disabled>
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="email">E-mail</label>
+					<div class="col-md-4">
+						<input name="email" type="text" class="form-control input-md" id="email" disabled>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+			<button type="submit" name="admindeleteuser" class="btn btn-danger">Töröl</button>
+		</div>
+	  </form>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="userNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Felhasználó felvitel</h4>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
-        <button type="button" class="btn btn-success">Rögzít</button>
-      </div>
+		</div>
+		<form action="index.php" method="post" class="form-horizontal">
+		<div class="modal-body">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="lastname">Vezetéknév</label>
+					<div class="col-md-4">
+						<input name="lastname" type="text" class="form-control input-md" id="lastname">
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="firstname">Keresztnév</label>
+					<div class="col-md-4">
+						<input name="firstname" type="text" class="form-control input-md" id="firstname">
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="email">E-mail</label>
+					<div class="col-md-4">
+						<input name="email" type="text" class="form-control input-md" id="email">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="password">Jelszó</label>
+					<div class="col-md-4">
+						<input name="password" type="password" class="form-control input-md" id="password">
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+			<button type="submit" name="adminadduser" class="btn btn-success">Rögzít</button>
+		</div>
+	  </form>
     </div>
   </div>
 </div>
@@ -148,7 +204,7 @@ $("#userModModal").on("shown.bs.modal", function (event) {
 	$.ajax({
 		type: 'POST',
 		url: 'process.php',
-		data: "adminupdateuserid=" + id,
+		data: "getuserdatabyid=" + id,
 		dataType: 'json',
 		success: function(data)
 		{	
@@ -163,6 +219,37 @@ $("#userModModal").on("shown.bs.modal", function (event) {
 		}   
 	});
 });
+
+$("#userDelModal").on("shown.bs.modal", function (event) {
+	var id = $("#selectedname").val();
+	var modal = $(this);
+	$.ajax({
+		type: 'POST',
+		url: 'process.php',
+		data: "getuserdatabyid=" + id,
+		dataType: 'json',
+		success: function(data)
+		{	
+			modal.find(".modal-body #userid").val(id);
+			modal.find(".modal-body #lastname").val(data.lastname);
+			modal.find(".modal-body #firstname").val(data.firstname);
+			modal.find(".modal-body #email").val(data.email);
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+          alert(errorThrown);
+		}   
+	});
+});
+
+$("#newUserModal").on("shown.bs.modal", function (event) {
+	var modal = $(this);
+	modal.find(".modal-body #lastname").val('');
+	modal.find(".modal-body #firstname").val('');
+	modal.find(".modal-body #email").val('');
+	modal.find(".modal-body #password").val('');
+});
+
+
 </script>
 	</body>
 </html>

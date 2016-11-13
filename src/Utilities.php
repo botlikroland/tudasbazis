@@ -130,7 +130,7 @@ class Utilities
     {
         $db = new DB();
 		
-		$id = $_POST['adminupdateuserid'];
+		$id = $_POST['getuserdatabyid'];
 
         $result = $db->query("SELECT lastname, firstname, email FROM login WHERE id = '$id';");
         $db->close();
@@ -165,15 +165,16 @@ class Utilities
 		
 
         if(!($db->query("SELECT * FROM login WHERE email = '$email';"))) {
-            $db->update("INSERT INTO login (email,password, lastname, firstname) VALUES ('$email',MD5('$password'),'$lastname','$firstname');");
+            $db->update("INSERT INTO login (email, password, lastname, firstname) VALUES ('$email',MD5('$password'),'$lastname','$firstname');");
             $db->close();
 			FlashMessage::setMessage("Sikeres felvitel!","success");
+			header("Location: /adminusercontrol.php");
         }
         else
         {
             $db->close();
 			FlashMessage::setMessage("Már létezik ilyen felhasználó!","danger");
-            header("Location: /adminadduser.php");
+            header("Location: /adminusercontrol.php");
         }
     }
 	
@@ -203,9 +204,17 @@ class Utilities
 		}
     }
 	
-	
+	public static function AdminDeleteUser()
+    {
+        $db = new DB();
 
-
+		$userid = $db->escape($_POST['userid']);
+		
+		$db->update("DELETE FROM login WHERE id='$userid';");
+		$db->close();
+		FlashMessage::setMessage("Sikeres törlés!","success");
+		header("Location: /adminusercontrol.php");
+	}
 }
 
 
