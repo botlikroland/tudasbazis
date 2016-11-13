@@ -58,10 +58,12 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Felhasználó módosítás</h4>
-      </div>
-	  <form action="index.php" method="post" class="form-horizontal">
+		</div>
+		<form action="index.php" method="post" class="form-horizontal">
 		<div class="modal-body">
 			<fieldset>
+				<input name="userid" type="hidden" class="form-control input-md" id="userid">
+			
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="lastname">Vezetéknév</label>
 					<div class="col-md-4">
@@ -86,15 +88,14 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="newpw">Jelszó</label>
 					<div class="col-md-4">
-						<input name="newpw" type="password" class="form-control input-md">
+						<input name="newpw" type="password" class="form-control input-md" id="newpw">
 					</div>
 				</div>
-				
 			</fieldset>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
-			<button type="submit" class="btn btn-success">Módosít</button>
+			<button type="submit" name="adminupdateuser" class="btn btn-success">Módosít</button>
 		</div>
 	  </form>
     </div>
@@ -147,13 +148,15 @@ $("#userModModal").on("shown.bs.modal", function (event) {
 	$.ajax({
 		type: 'POST',
 		url: 'process.php',
-		data: "id=" + id,
+		data: "adminupdateuserid=" + id,
 		dataType: 'json',
 		success: function(data)
 		{	
+			modal.find(".modal-body #userid").val(id);
 			modal.find(".modal-body #lastname").val(data.lastname);
 			modal.find(".modal-body #firstname").val(data.firstname);
 			modal.find(".modal-body #email").val(data.email);
+			modal.find(".modal-body #newpw").val('');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
           alert(errorThrown);

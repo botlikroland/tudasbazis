@@ -25,9 +25,14 @@
             Utilities::AdminAddUser();
 		}
 		
-		if(isset($_POST['id']))
+		if(isset($_POST['adminupdateuserid']))
 		{
 			Utilities::GetUserDataById();
+		}
+		
+		if(isset($_POST['adminupdateuser']))
+		{
+            Utilities::AdminUpdateUser();
 		}
 		
 		//ADMIN-VÉGE--------------------------------

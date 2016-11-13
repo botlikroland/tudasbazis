@@ -35,19 +35,6 @@ class Utilities
             header("Location: /changepw.php");
         }
     }
-	
-	public static function AdminChangePassword()
-    {
-        $db = new DB();
-
-        $userid = $_POST['selectedname'];
-        $newpw = $db->escape($_POST['newpw']);
-		
-        $db->query("UPDATE login SET password = MD5('$newpw') where id = '$userid'");
-        $db->close();
-        FlashMessage::setMessage("Sikeres jelszó változtatás!","success");
-        header("Location: /index.php");
-    }
 
     public static function SaveArticle()
     {
@@ -143,7 +130,7 @@ class Utilities
     {
         $db = new DB();
 		
-		$id = $_POST['id'];
+		$id = $_POST['adminupdateuserid'];
 
         $result = $db->query("SELECT lastname, firstname, email FROM login WHERE id = '$id';");
         $db->close();
@@ -188,6 +175,32 @@ class Utilities
 			FlashMessage::setMessage("Már létezik ilyen felhasználó!","danger");
             header("Location: /adminadduser.php");
         }
+    }
+	
+	public static function AdminUpdateUser()
+    {
+        $db = new DB();
+
+		$userid = $db->escape($_POST['userid']);
+        $email = $db->escape($_POST['email']);
+        $password = $db->escape($_POST['newpw']);
+		$lastname = $db->escape($_POST['lastname']);
+		$firstname = $db->escape($_POST['firstname']);
+		
+		if($password == "")
+		{	
+			$db->update("UPDATE login SET email = '$email', lastname = '$lastname', firstname = '$firstname' WHERE id = '$userid'");
+			$db->close();
+			FlashMessage::setMessage("Sikeres módosítás!","success");
+			header("Location: /adminusercontrol.php");
+		}
+		else
+		{
+			$db->update("UPDATE login SET email = '$email', lastname = '$lastname', firstname = '$firstname', password = MD5('$password') WHERE id = '$userid'");
+			$db->close();
+			FlashMessage::setMessage("Sikeres módosítás!","success");
+			header("Location: /adminusercontrol.php");
+		}
     }
 	
 	
