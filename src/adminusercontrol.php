@@ -192,6 +192,15 @@
 						<input name="password" type="password" class="form-control input-md" id="password">
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="grants">Jogosultságok</label>
+					<div class="col-md-4">
+						<div class="checkbox">
+							<label><input id="admin" name="admin" type="checkbox" value="true">Admin</label>
+						</div>
+					</div>
+				</div>
 			</fieldset>
 		</div>
 		<div class="modal-footer">
@@ -257,6 +266,7 @@ $("#newUserModal").on("shown.bs.modal", function (event) {
 	modal.find(".modal-body #firstname").val('');
 	modal.find(".modal-body #email").val('');
 	modal.find(".modal-body #password").val('');
+	modal.find(".modal-body #admin").prop('checked', false);
 });
 
 

@@ -169,7 +169,13 @@ class Utilities
 
         if(!($db->query("SELECT * FROM login WHERE email = '$email';"))) {
             $db->update("INSERT INTO login (email, password, lastname, firstname) VALUES ('$email',MD5('$password'),'$lastname','$firstname');");
+			$result = $db->query("SELECT id FROM login WHERE email = '$email';");
+			$userid = $result[0]["id"];
             $db->close();
+			if(isset($_POST['admin']))
+			{
+				Utilities::SetPermission($userid, 'admin', true);
+			}
 			FlashMessage::setMessage("Sikeres felvitel!","success");
 			header("Location: /adminusercontrol.php");
         }
@@ -224,6 +230,7 @@ class Utilities
 		$userid = $db->escape($_POST['userid']);
 		
 		$db->update("DELETE FROM login WHERE id='$userid';");
+		$db->update("DELETE FROM permission WHERE userid = '$userid';");
 		$db->close();
 		FlashMessage::setMessage("Sikeres törlés!","success");
 		header("Location: /adminusercontrol.php");
