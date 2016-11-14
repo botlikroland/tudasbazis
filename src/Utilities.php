@@ -215,6 +215,22 @@ class Utilities
 		FlashMessage::setMessage("Sikeres törlés!","success");
 		header("Location: /adminusercontrol.php");
 	}
+	
+	public static function HasPermission($permission)
+	{
+		$db = new DB();
+		$userid = $_SESSION['userid'];
+		if($db->query("SELECT * FROM permission WHERE userid = '$userid' AND permission = '$permission'"))
+		{
+			$db->close();
+			return true;
+		}
+		else
+		{
+			$db->close();
+			return false;
+		}
+	}
 }
 
 

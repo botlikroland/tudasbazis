@@ -24,12 +24,14 @@ $nev = Utilities::GetNameById();
         </ul>
         <ul class="nav navbar-nav navbar-right">
 			<li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span><?php echo $nev ?></li>
-			<li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
-                <ul role="menu" class="dropdown-menu">
-					<li><a href="adminusercontrol.php">Felhasználó kezelés</a></li>
-				</ul>
-            </li>
+			<?php if(Utilities::HasPermission('admin')) { ?>
+				<li class="dropdown">
+					<a data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+					<ul role="menu" class="dropdown-menu">
+						<li><a href="adminusercontrol.php">Felhasználó kezelés</a></li>
+					</ul>
+				</li>
+			<?php } ?>
 			<li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle">Beállítások <b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">
