@@ -63,7 +63,7 @@
 		<div class="modal-body">
 			<fieldset>
 				<input name="userid" type="hidden" class="form-control input-md" id="userid">
-			
+				
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="lastname">Vezetéknév</label>
 					<div class="col-md-4">
@@ -89,6 +89,15 @@
 					<label class="col-md-4 control-label" for="newpw">Jelszó</label>
 					<div class="col-md-4">
 						<input name="newpw" type="password" class="form-control input-md" id="newpw">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="grants">Jogosultságok</label>
+					<div class="col-md-4">
+						<div class="checkbox">
+							<label><input id="admin" name="admin" type="checkbox" value="true">Admin</label>
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -213,6 +222,7 @@ $("#userModModal").on("shown.bs.modal", function (event) {
 			modal.find(".modal-body #firstname").val(data.firstname);
 			modal.find(".modal-body #email").val(data.email);
 			modal.find(".modal-body #newpw").val('');
+			modal.find(".modal-body #admin").prop('checked', data.admin);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
           alert(errorThrown);

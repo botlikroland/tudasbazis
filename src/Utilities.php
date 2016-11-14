@@ -133,8 +133,11 @@ class Utilities
 		$id = $_POST['getuserdatabyid'];
 
         $result = $db->query("SELECT lastname, firstname, email FROM login WHERE id = '$id';");
-        $db->close();
-		$data = array("lastname"=>$result[0]["lastname"],"firstname"=> $result[0]["firstname"], "email"=>$result[0]["email"]);
+		$db->close();
+		$admin = Utilities::HasPermission($id,'admin');
+
+		
+		$data = array("lastname"=>$result[0]["lastname"],"firstname"=> $result[0]["firstname"], "email"=>$result[0]["email"], "admin"=> $admin);
 		
 		echo json_encode($data);
     }
@@ -187,7 +190,17 @@ class Utilities
         $password = $db->escape($_POST['newpw']);
 		$lastname = $db->escape($_POST['lastname']);
 		$firstname = $db->escape($_POST['firstname']);
+		$db->close();
+		if(isset($_POST['admin']))
+		{
+			Utilities::SetPermission($userid, 'admin', true);
+		}
+		else
+		{
+			Utilities::SetPermission($userid, 'admin', false);
+		}
 		
+		$db = new DB();
 		if($password == "")
 		{	
 			$db->update("UPDATE login SET email = '$email', lastname = '$lastname', firstname = '$firstname' WHERE id = '$userid'");
@@ -202,7 +215,7 @@ class Utilities
 			FlashMessage::setMessage("Sikeres módosítás!","success");
 			header("Location: /adminusercontrol.php");
 		}
-    }
+    }	
 	
 	public static function AdminDeleteUser()
     {
@@ -216,10 +229,9 @@ class Utilities
 		header("Location: /adminusercontrol.php");
 	}
 	
-	public static function HasPermission($permission)
+	public static function HasPermission($userid, $permission)
 	{
 		$db = new DB();
-		$userid = $_SESSION['userid'];
 		if($db->query("SELECT * FROM permission WHERE userid = '$userid' AND permission = '$permission'"))
 		{
 			$db->close();
@@ -231,6 +243,29 @@ class Utilities
 			return false;
 		}
 	}
+	
+	public static function SetPermission($userid, $permission, $set)
+	{
+		if($set)
+		{
+			if(!Utilities::HasPermission($userid, $permission))
+			{
+				$db = new DB();
+				$db->update("INSERT INTO permission (userid, permission) VALUES ('$userid','$permission');");
+				$db->close();
+			}
+		}
+		else
+		{
+			if(Utilities::HasPermission($userid, $permission))
+			{
+				$db = new DB();
+				$db->update("DELETE FROM permission WHERE userid='$userid' AND permission = '$permission';");
+				$db->close();
+			}
+		}
+	}
+	
 }
 
 

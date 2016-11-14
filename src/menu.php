@@ -24,7 +24,7 @@ $nev = Utilities::GetNameById();
         </ul>
         <ul class="nav navbar-nav navbar-right">
 			<li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span><?php echo $nev ?></li>
-			<?php if(Utilities::HasPermission('admin')) { ?>
+			<?php if(Utilities::HasPermission($_SESSION['userid'],'admin')) { ?>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
 					<ul role="menu" class="dropdown-menu">
