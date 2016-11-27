@@ -29,75 +29,42 @@ include_once('process.php');
     <aside class="sidebar">
       <nav class="sidebar-nav">
         <ul class="metismenu" id="menu">
-          <li class="active">
-            <a href="#" aria-expanded="true">
-              <span class="sidebar-nav-item-icon fa fa-github fa-lg"></span>
-              <span class="sidebar-nav-item">metisMenu</span>
+          <li>
+            <a href="#" aria-expanded="false">
+              <span class="sidebar-nav-item">Platformok</span>
               <span class="fa arrow"></span>
             </a>
-            <ul aria-expanded="true">
-              <li>
-                <a href="https://github.com/onokumus/metisMenu">
-                  <span class="sidebar-nav-item-icon fa fa-code-fork"></span>
-                  Fork
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/onokumus/metisMenu">
-                  <span class="sidebar-nav-item-icon fa fa-star"></span>
-                  Star
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/onokumus/metisMenu/issues">
-                  <span class="sidebar-nav-item-icon fa fa-exclamation-triangle"></span>
-                  Issues
-                </a>
-              </li>
+            <ul aria-expanded="false">
+              <li><a href="#">profession.hu</a></li>
+              <li><a href="#">jobmonitor.hu</a></li>
+              <li><a href="#">munkatarsaim.hu</a></li>
+			  <li><a href="#">mobil applikációk</a></li>
+			  <li><a href="#">mobil munka</a></li>
             </ul>
           </li>
           <li>
-            <a href="#" aria-expanded="false">Menu 0 <span class="fa arrow"></span></a>
-            <ul aria-expanded="false">
-              <li><a href="#">item 0.1</a></li>
-              <li><a href="#">item 0.2</a></li>
-              <li><a href="#">item 0.4</a></li>
-            </ul>
+            <a href="#" aria-expanded="false">ÁSZF, EAT, FF</a>
           </li>
-          <li>
-            <a href="#" aria-expanded="false">Menu 1 <span class="glyphicon arrow"></span></a>
-            <ul aria-expanded="false">
-              <li><a href="#">item 1.1</a></li>
-              <li><a href="#">item 1.2</a></li>
-              <li>
-                <a href="#" aria-expanded="false">Menu 1.3 <span class="fa plus-times"></span></a>
-                <ul aria-expanded="false">
-                  <li><a href="#">item 1.3.1</a></li>
-                  <li><a href="#">item 1.3.2</a></li>
-                  <li><a href="#">item 1.3.3</a></li>
-                  <li><a href="#">item 1.3.4</a></li>
-                </ul>
-              </li>
-              <li><a href="#">item 1.4</a></li>
-              <li>
-                <a href="#" aria-expanded="false">Menu 1.5 <span class="fa plus-minus"></span></a>
-                <ul aria-expanded="false">
-                  <li><a href="#">item 1.5.1</a></li>
-                  <li><a href="#">item 1.5.2</a></li>
-                  <li><a href="#">item 1.5.3</a></li>
-                  <li><a href="#">item 1.5.4</a></li>
-                </ul>
-              </li>
-            </ul>
+		  <li>
+            <a href="#" aria-expanded="false">Termékek és szolgáltatások</a>
           </li>
-          <li>
-            <a href="#" aria-expanded="false">Menu 2 <span class="glyphicon arrow"></span></a>
-            <ul aria-expanded="false">
-              <li><a href="#">item 2.1</a></li>
-              <li><a href="#">item 2.2</a></li>
-              <li><a href="#">item 2.3</a></li>
-              <li><a href="#">item 2.4</a></li>
-            </ul>
+		  <li>
+            <a href="#" aria-expanded="false">Programok használata</a>
+          </li>
+		  <li>
+            <a href="#" aria-expanded="false">Értékesítés</a>
+          </li>
+		  <li>
+            <a href="#" aria-expanded="false">Hirdetésszerkesztés és szolgáltatások beállítása</a>
+          </li>
+		  <li>
+            <a href="#" aria-expanded="false">Moderálás</a>
+          </li>
+		  <li>
+            <a href="#" aria-expanded="false">Számlázás</a>
+          </li>
+		  <li>
+            <a href="#" aria-expanded="false">Ügyfélkapcsolatok</a>
           </li>
         </ul>
       </nav>

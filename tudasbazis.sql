@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2016. Nov 14. 12:55
+-- Létrehozás ideje: 2016. Nov 27. 19:59
 -- Kiszolgáló verziója: 10.1.16-MariaDB
 -- PHP verzió: 5.6.24
 
@@ -34,15 +34,6 @@ CREATE TABLE `articles` (
   `title` varchar(16) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `text` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- A tábla adatainak kiíratása `articles`
---
-
-INSERT INTO `articles` (`id`, `ownerid`, `created`, `modified`, `title`, `text`) VALUES
-(3, 2, '2016-10-22 21:22:34', '2016-10-28 17:24:39', 'Cím adat egy2', 'szia roli vagyok és ez az első cikk hihihihahaha\r\njejeje\r\nez már a harmadik sor\r\nűúűú'),
-(4, 2, '2016-10-27 18:27:53', '0000-00-00 00:00:00', 'Cím adat 2', 'asdasdsadadsad'),
-(7, 2, '2016-10-28 17:35:08', '2016-10-28 17:35:08', 'asddsa', 'dsa');
 
 -- --------------------------------------------------------
 
