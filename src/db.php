@@ -7,7 +7,7 @@ var $connection;
 	
 		
 	function __construct() {
-		$connection = @mysql_connect('localhost','root','');
+		$connection = @mysql_connect('localhost','root','root');
 		if(!$connection) {
 			die('Connection error: '.mysql_error());
 		}
