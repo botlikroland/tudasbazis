@@ -3,18 +3,22 @@ class sideMenu {
 
 	public static function show() {
 
+	echo '<div class="clearfix">'.
+    	 	'<aside class="sidebar">'.
+      	 		'<nav class="sidebar-nav">'.
+         			'<ul class="metismenu" id="menu">';
+
 		$db = new DB();
 		
 		$result = $db->query("SELECT id,title FROM menu WHERE parentId = 0");
 		$db->close();
 		
-		foreach($result as $element)
-		{
+		foreach($result as $element) {
 			echo '<li>'
 			.'<a href="#" aria-expanded="false">'. $element['title'];
 			
 			$db = new DB();
-			if($subResult = $db->query("SELECT title, parentId FROM menu WHERE parentId = ".$element['id'])){
+			if($subResult = $db->query("SELECT title, parentId FROM menu WHERE parentId = ".$element['id'])) {
 				echo '<span class="fa arrow"></span></a>';
 				echo '<ul>';
 				foreach($subResult as $subElement){
@@ -30,12 +34,11 @@ class sideMenu {
 			$db->close();
 			echo '</li>';
 		}
+
+		echo 		'</ul>'.
+      			'</nav>'.
+    		'</aside>'.
+		'</div>';
 	}
-
-
-
-
-
-
 }
 ?>

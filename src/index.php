@@ -25,19 +25,8 @@ ini_set('display_errors','On');
 <?php
 	include_once('menu.php');
   include_once('sideMenu.php');
+  sideMenu::Show();
 ?>
-
-<div class="clearfix">
-    <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <ul class="metismenu" id="menu">
-          <?php
-            sideMenu::Show();
-          ?>
-        </ul>
-      </nav>
-    </aside>
-</div>
 
 
 <?php
