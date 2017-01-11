@@ -25,17 +25,41 @@ class sideMenu {
 					echo ' class="active"';
 				}
 			}
+			if (isset($_GET['articleid'])){
+				$db = new DB();
+		
+				$location = $db->query("SELECT location FROM articles WHERE id = " . $_GET['articleid']);
+				$db->close();
+				$db = new DB();
+		
+				$parentCheck = $db->query("SELECT parentId FROM menu WHERE id = " . $location[0]['location']);
+				$db->close();
+				if ($parentCheck[0]['parentId'] == $element['id']){
+					echo ' class="active"';
+				}
+			}
 
 			echo '>'
 			.'<a';
 
 			if (isset($_GET['pageid'])){
-						if ($_GET['pageid'] == $element['id']){
-							echo ' style="color:red;"';
-						}
-					}
+				if ($_GET['pageid'] == $element['id']){
+					echo ' style="color:red;"';
+				}
+			}
 
-			echo ' href="page.php?pageid=' . $element['id'] . '" aria-expanded="true">'. $element['title'];
+			if (isset($_GET['articleid'])){
+				$db = new DB();
+		
+				$location = $db->query("SELECT location FROM articles WHERE id = " . $_GET['articleid']);
+				$db->close();
+				if ($location[0]['location'] == $element['id']){
+					echo ' style="color:red;"';
+				}
+			}
+
+
+			echo ' href="page.php?pageid=' . $element['id'] . '">'. $element['title'];
 			
 			$db = new DB();
 			if($subResult = $db->query("SELECT title, id FROM menu WHERE parentId = ".$element['id'])) {
@@ -47,6 +71,14 @@ class sideMenu {
 
 					if (isset($_GET['pageid'])){
 						if ($_GET['pageid'] == $subElement['id']){
+							echo ' style="color:red;"';
+						}
+					}
+
+					if (isset($_GET['articleid'])){
+						$db = new DB();
+						$location = $db->query("SELECT location FROM articles WHERE id = " . $_GET['articleid']);
+						if ($location[0]['location'] == $subElement['id']){
 							echo ' style="color:red;"';
 						}
 					}

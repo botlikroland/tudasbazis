@@ -39,9 +39,12 @@ $db = new DB();
 $result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['articleid'] .";");
 $db->close();
 
+
+echo '<a href="page.php?pageid='.$result[0]['location']. '" class="btn btn-primary"> Vissza a cikkekhez </a>';
+
 foreach($result as $article)
 {
-    echo  "<h2>" . $article['title'] . "</h1><br><br>" . $article['text'];
+    echo  "<h1>" . $article['title'] . "</h1><br><br>" . $article['text'];
 }
 ?>
 	</div>

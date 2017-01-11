@@ -38,6 +38,15 @@ ini_set('display_errors','On');
 
 <?php
 	$db = new DB();
+		
+	$title = $db->query("SELECT title FROM menu WHERE id = " . $_GET['pageid']);
+	$db->close();
+	
+	echo '<legend>'
+	.$title[0]['title']
+	.'</legend>';
+
+	$db = new DB();
 	
 	$result = $db->query("SELECT * FROM articles WHERE location = " . $_GET['pageid']);
     $db->close();
