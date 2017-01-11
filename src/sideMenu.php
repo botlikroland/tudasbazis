@@ -14,16 +14,44 @@ class sideMenu {
 		$db->close();
 		
 		foreach($result as $element) {
-			echo '<li>'
-			.'<a href="page.php?id=' . $element['id'] . '" aria-expanded="false">'. $element['title'];
+			echo '<li';
+
+			if (isset($_GET['pageid'])){
+				$db = new DB();
+		
+				$parentCheck = $db->query("SELECT parentId FROM menu WHERE id = " . $_GET['pageid']);
+				$db->close();
+				if ($parentCheck[0]['parentId'] == $element['id']){
+					echo ' class="active"';
+				}
+			}
+
+			echo '>'
+			.'<a';
+
+			if (isset($_GET['pageid'])){
+						if ($_GET['pageid'] == $element['id']){
+							echo ' style="color:red;"';
+						}
+					}
+
+			echo ' href="page.php?pageid=' . $element['id'] . '" aria-expanded="true">'. $element['title'];
 			
 			$db = new DB();
-			if($subResult = $db->query("SELECT title, parentId FROM menu WHERE parentId = ".$element['id'])) {
+			if($subResult = $db->query("SELECT title, id FROM menu WHERE parentId = ".$element['id'])) {
 				echo '<span class="fa arrow"></span></a>';
 				echo '<ul>';
 				foreach($subResult as $subElement){
 					echo '<li>'
-						.'<a href="page.php?id=' . $element['id'] . '" aria-expanded="false">'. $subElement['title'] . '</a>'
+						.'<a';
+
+					if (isset($_GET['pageid'])){
+						if ($_GET['pageid'] == $subElement['id']){
+							echo ' style="color:red;"';
+						}
+					}
+
+					echo ' href="page.php?pageid=' . $subElement['id'] . '">' . $subElement['title'] . '</a>'
 						.'</li>';
 				}
 				echo '</ul>';

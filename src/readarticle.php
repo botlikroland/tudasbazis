@@ -36,7 +36,7 @@ ini_set('display_errors','On');
 
 $db = new DB();
 
-$result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['id'] .";");
+$result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['articleid'] .";");
 $db->close();
 
 foreach($result as $article)

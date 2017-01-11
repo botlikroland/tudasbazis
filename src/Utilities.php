@@ -53,7 +53,7 @@ class Utilities
 		$result = $db->query("SELECT id FROM articles ORDER BY created DESC LIMIT 1;");
 		$db->close();
 
-        header("Location: /readarticle.php?id=" . $result[0]['id']);
+        header("Location: /readarticle.php?articleid=" . $result[0]['id']);
     }
 	
 	public static function UpdateArticle()
@@ -64,7 +64,7 @@ class Utilities
         $currentTime = date("Y-m-d H:i:s", time());
 		$title = $_POST['title'];
         $text = $_POST['text'];
-		$articleID = $_GET['id'];
+		$articleID = $_GET['articleid'];
 		
         $db->update("UPDATE articles SET modified='$currentTime', title='$title', text='$text' WHERE id='$articleID';");
         $db->close();
@@ -77,7 +77,7 @@ class Utilities
         $db = new DB();
 
         $userid = $_SESSION['userid'];
-        $articleID = $_GET['id'];
+        $articleID = $_GET['articleid'];
 		
         $db->update("DELETE FROM articles WHERE id='$articleID';");
         $db->close();

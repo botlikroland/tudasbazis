@@ -3,7 +3,7 @@ include_once('process.php');
 
 $db = new DB();
 
-$result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['id'] .";");
+$result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['articleid'] .";");
 $db->close();
 
 $title = $result[0]['title'];
@@ -27,7 +27,7 @@ $text = $result[0]['text'];
 ?>
 	
 
-<form action="<?php echo 'index.php?id='.$_GET['id'] ?>" method="post">
+<form action="<?php echo 'index.php?articleid='.$_GET['articleid'] ?>" method="post">
 	Cím <br>
 	<textarea type="text" name="title" rows="1" cols="50"/><?php echo $title; ?></textarea><br />
 	Tartalom <br>
