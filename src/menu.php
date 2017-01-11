@@ -19,8 +19,7 @@ $nev = Utilities::GetNameById();
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="index.php">Főoldal</a></li>
-			<li><a href="newArticle.php">Új cikk</a></li>
+            <!-- Bal oldali gombok helye, ha kell majd -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
 			<li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span><?php echo $nev ?></li>

@@ -15,7 +15,7 @@ class sideMenu {
 		
 		foreach($result as $element) {
 			echo '<li>'
-			.'<a href="#" aria-expanded="false">'. $element['title'];
+			.'<a href="page.php?id=' . $element['id'] . '" aria-expanded="false">'. $element['title'];
 			
 			$db = new DB();
 			if($subResult = $db->query("SELECT title, parentId FROM menu WHERE parentId = ".$element['id'])) {
@@ -23,7 +23,7 @@ class sideMenu {
 				echo '<ul>';
 				foreach($subResult as $subElement){
 					echo '<li>'
-						.'<a href="#" aria-expanded="false">'. $subElement['title'] . '</a>'
+						.'<a href="page.php?id=' . $element['id'] . '" aria-expanded="false">'. $subElement['title'] . '</a>'
 						.'</li>';
 				}
 				echo '</ul>';

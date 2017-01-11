@@ -10,7 +10,7 @@ ini_set('display_errors','On');
 
 <html>
 	<head>
-		<title>Új cikk felvitele</title>
+		<title>Főoldal</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -19,7 +19,6 @@ ini_set('display_errors','On');
 		<link rel="stylesheet" href="metisMenu.min.css" />
 		<link rel="stylesheet" href="demo.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css" />
-		<script src="ckeditor/ckeditor.js"></script>
 	</head>
 	<body>
 	
@@ -34,16 +33,26 @@ ini_set('display_errors','On');
 	</div>
 	<div class="col-md-10">
 	<div class="container">
-		<form action=<?php echo '"index.php?location='.$_GET['location'].'"'; ?> method="post">
-			Cím <br>
-			<textarea type="text" name="title" rows="1" cols="50"/></textarea><br />
-			Tartalom <br>
-			<textarea type="text" id="text" name="text" rows="4" cols="50"/></textarea><br />
-			<input type="submit" name="saveArticle" value="Cikk mentése" />
-			<script>
-		    	CKEDITOR.replace('text');
-		    </script>
-		</form>
+	<a href=<?php echo 'newarticle.php?location='.$_GET['id']; ?> class="btn btn-primary pull-right"> Új cikk </a><br>
+
+
+<?php
+	$db = new DB();
+	
+	$result = $db->query("SELECT * FROM articles WHERE location = " . $_GET['id']);
+    $db->close();
+	
+	foreach($result as $article)
+	{
+		echo '<a href="readarticle.php?id='. $article['id'] . '">Megnyit</a>' . ' ';
+		echo '<a href="updatearticle.php?id='. $article['id'] . '">Módosít</a>' . ' ';
+		echo '<a href="deletearticle.php?id='. $article['id'] . '">Töröl</a>' . ' ';
+		echo $article['title'] . "<br>";
+	}
+
+
+
+?>
 </div>
 </div>
 

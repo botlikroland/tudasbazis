@@ -3,7 +3,6 @@
 class Utilities
 {
 
-
     public static function ChangePassword()
     {
         $db = new DB();
@@ -44,11 +43,17 @@ class Utilities
         $currentTime = date("Y-m-d H:i:s", time());
 		$title = $_POST['title'];
         $text = $_POST['text'];
+        $location = $_GET['location'];
 
-        $db->update("INSERT INTO articles (ownerid,created,modified,title,text) VALUES ('$userid','$currentTime','$currentTime','$title','$text');");
+        $db->update("INSERT INTO articles (ownerid,location,created,modified,title,text) VALUES ('$userid','$location','$currentTime','$currentTime','$title','$text');");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!","success");
-        header("Location: /index.php");
+
+        $db = new DB();
+		$result = $db->query("SELECT id FROM articles ORDER BY created DESC LIMIT 1;");
+		$db->close();
+
+        header("Location: /readarticle.php?id=" . $result[0]['id']);
     }
 	
 	public static function UpdateArticle()

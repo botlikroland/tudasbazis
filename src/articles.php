@@ -1,7 +1,7 @@
 ﻿<?php
 	$db = new DB();
 	
-	$result = $db->query("SELECT * FROM articles;");
+	$result = $db->query("SELECT * FROM articles WHERE location = " . $_GET['id'] . ";");
     $db->close();
 	
 	foreach($result as $article)

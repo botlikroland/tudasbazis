@@ -24,17 +24,18 @@ ini_set('display_errors','On');
 	
 <?php
 	include_once('menu.php');
-  include_once('sideMenu.php');
-  sideMenu::Show();
+	include_once('sideMenu.php');
 ?>
 
-
-<?php
-include_once('articles.php');
-?>
+<div class="row">
+	<div class="col-md-2">
+		<?php sideMenu::show(); ?>
+	</div>
+	<div class="col-md-9">
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="metisMenu.min.js"></script>
