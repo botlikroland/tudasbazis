@@ -1,8 +1,6 @@
-﻿<?php
+<?php
 	include_once('process.php');
-	
 ?>
-
 <html>
 	<head>
 		<title>Jelszó változtatás</title>
@@ -11,11 +9,9 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	</head>
 	<body>
-	
 <?php
 	include_once('menu.php');
 ?>
-
 	<form action="index.php" method="post" class="form-horizontal">
 		<fieldset>
 			<legend>Jelszó változtatás</legend>
