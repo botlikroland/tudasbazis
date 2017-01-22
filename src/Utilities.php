@@ -45,9 +45,13 @@ class Utilities
         $text = $_POST['text'];
         $location = $_GET['location'];
 
-        $db->update("INSERT INTO articles (ownerid,location,created,modified,title,text) VALUES ('$userid','$location','$currentTime','$currentTime','$title','$text');");
+        $db->update("INSERT INTO articles (ownerid,location,position,created,modified,title,text) VALUES ('$userid','$location',0,'$currentTime','$currentTime','$title','$text');");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!","success");
+
+        $db = new DB();
+		$db->update("UPDATE articles SET position = position + 1 WHERE location = $location;");
+		$db->close();
 
         $db = new DB();
 		$result = $db->query("SELECT id FROM articles ORDER BY created DESC LIMIT 1;");
@@ -275,6 +279,17 @@ class Utilities
 				$db->update("DELETE FROM permission WHERE userid='$userid' AND permission = '$permission';");
 				$db->close();
 			}
+		}
+	}
+
+	public static function SavePosition()
+	{
+		$i = 1;
+		foreach ($_POST['position'] as $value) {
+			$db = new DB();
+			$db->update("UPDATE articles SET position = $i WHERE id = $value;");
+			$db->close();
+    		$i++;
 		}
 	}
 	

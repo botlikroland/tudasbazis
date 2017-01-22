@@ -19,6 +19,15 @@ ini_set('display_errors','On');
 		<link rel="stylesheet" href="metisMenu.min.css" />
 		<link rel="stylesheet" href="demo.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css" />
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+  $(function() {
+    $("#sortable").sortable();
+    $("#sortable").disableSelection();
+  } );
+  </script>
+		
 	</head>
 	<body>
 	
@@ -47,22 +56,36 @@ ini_set('display_errors','On');
 	.'</legend>';
 
 	include_once('articles.php');
+	
 
 
 ?>
 </div>
 </div>
 
-	<script src="js/jquery-3.1.1.min.js"></script>
+	
 	<script src="js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="metisMenu.min.js"></script>
     <script>
 		$(function() {
 			$('#menu').metisMenu();
 		});
+
+		$('#sortable').sortable({
+    axis: 'y',
+    update: function (event, ui) {
+        var data = $(this).sortable('serialize');
+
+        $.ajax({
+            data: data,
+            type: 'POST',
+            url: 'process.php'
+        });
+    }
+});
 	</script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/prism.min.js"></script>
+
 	</body>
 </html>
