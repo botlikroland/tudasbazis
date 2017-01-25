@@ -38,7 +38,7 @@ ini_set('display_errors','On');
 			Cím <br>
 			<textarea type="text" name="title" rows="1" cols="50"/></textarea><br />
 			Tartalom <br>
-			<textarea type="text" id="text" name="text" rows="4" cols="50"/></textarea><br />
+			<textarea type="text" id="text" name="text" rows="10" cols="50"/></textarea><br />
 			<input type="submit" name="saveArticle" value="Cikk mentése" />
 			<script>
 		    	CKEDITOR.replace('text');

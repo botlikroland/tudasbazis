@@ -45,7 +45,7 @@ class Utilities
         $text = $_POST['text'];
         $location = $_GET['location'];
 
-        $db->update("INSERT INTO articles (ownerid,location,position,created,modified,title,text) VALUES ('$userid','$location',0,'$currentTime','$currentTime','$title','$text');");
+        $db->update("INSERT INTO articles (ownerid,location,type,position,created,modified,title,text) VALUES ('$userid','$location','normal',0,'$currentTime','$currentTime','$title','$text');");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk mentés!","success");
 
@@ -59,6 +59,27 @@ class Utilities
 
         header("Location: /readarticle.php?articleid=" . $result[0]['id']);
     }
+
+    public static function SaveTitle()
+    {
+        $db = new DB();
+
+        $userid = $_SESSION['userid'];
+        $currentTime = date("Y-m-d H:i:s", time());
+		$title = "Ez csak egy fejléc";
+        $text = $_POST['text'];
+        $location = $_GET['location'];
+
+        $db->update("INSERT INTO articles (ownerid,location,type,position,created,modified,title,text) VALUES ('$userid','$location','title',0,'$currentTime','$currentTime','$title','$text');");
+        $db->close();
+        FlashMessage::setMessage("Sikeres fejléc mentés!","success");
+
+        $db = new DB();
+		$db->update("UPDATE articles SET position = position + 1 WHERE location = $location;");
+		$db->close();
+
+        header("Location: /page.php?pageid=" . $location);
+    }
 	
 	public static function UpdateArticle()
     {
@@ -69,11 +90,29 @@ class Utilities
 		$title = $_POST['title'];
         $text = $_POST['text'];
 		$articleID = $_GET['articleid'];
+		$location = $_GET['location'];
 		
         $db->update("UPDATE articles SET modified='$currentTime', title='$title', text='$text' WHERE id='$articleID';");
         $db->close();
         FlashMessage::setMessage("Sikeres cikk módosítás!","success");
-        header("Location: /index.php");
+        header("Location: /readarticle.php?articleid=" . $articleID);
+    }
+
+    public static function UpdateTitle()
+    {
+        $db = new DB();
+
+        $userid = $_SESSION['userid'];
+        $currentTime = date("Y-m-d H:i:s", time());
+		$title = "Ez csak egy fejléc";
+        $text = $_POST['text'];
+		$articleID = $_GET['articleid'];
+		$location = $_GET['location'];
+		
+        $db->update("UPDATE articles SET modified='$currentTime', title='$title', text='$text' WHERE id='$articleID';");
+        $db->close();
+        FlashMessage::setMessage("Sikeres fejléc módosítás!","success");
+        header("Location: /page.php?pageid=" . $location);
     }
 	
 	public static function DeleteArticle()
@@ -82,11 +121,26 @@ class Utilities
 
         $userid = $_SESSION['userid'];
         $articleID = $_GET['articleid'];
-		
+		$location = $_GET['location'];
+
         $db->update("DELETE FROM articles WHERE id='$articleID';");
         $db->close();
         FlashMessage::setMessage("Cikk törölve!","success");
-        header("Location: /index.php");
+        header("Location: /page.php?pageid=" . $location);
+    }
+
+    public static function DeleteTitle()
+    {
+        $db = new DB();
+
+        $userid = $_SESSION['userid'];
+        $articleID = $_GET['articleid'];
+		$location = $_GET['location'];
+		
+        $db->update("DELETE FROM articles WHERE id='$articleID';");
+        $db->close();
+        FlashMessage::setMessage("Fejléc törölve!","success");
+        header("Location: /page.php?pageid=" . $location);
     }
 
     public static function Logout()

@@ -19,7 +19,7 @@ ini_set('display_errors','On');
 		<link rel="stylesheet" href="metisMenu.min.css" />
 		<link rel="stylesheet" href="demo.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css" />
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
   $(function() {
@@ -42,7 +42,11 @@ ini_set('display_errors','On');
 	</div>
 	<div class="col-md-10">
 	<div class="container">
-	<a href=<?php echo 'newarticle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új cikk </a><br>
+		<div class="text-right btn-toolbar">
+       		<a href=<?php echo 'newarticle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új cikk </a>
+			<a href=<?php echo 'newtitle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új fejléc </a>
+		</div>
+	
 
 
 <?php

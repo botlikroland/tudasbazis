@@ -1,24 +1,19 @@
 <?php
 include_once('process.php');
 
-$db = new DB();
+error_reporting(E_ALL);
+ini_set('display_errors','On');
 
-$result = $db->query("SELECT * FROM articles WHERE id = " . $_GET['articleid'] .";");
-$db->close();
-
-$title = $result[0]['title'];
-$text = $result[0]['text'];
 
 
 ?>
 
-
 <html>
 	<head>
-		<title>Cikk módosítása</title>
+		<title>Új fejléc felvitele</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="metisMenu.min.css" />
@@ -39,20 +34,15 @@ $text = $result[0]['text'];
 	</div>
 	<div class="col-md-10">
 	<div class="container">
-	<form action=<?php echo '"index.php?articleid='.$_GET['articleid'].'&location='.$_GET['location'];?>" method="post">
-		Cím <br>
-		<textarea type="text" name="title" rows="1" cols="50"/><?php echo $title; ?></textarea><br />
-		Tartalom <br>
-		<textarea type="text" name="text" rows="10" cols="50"/><?php echo $text; ?></textarea><br />
-		<input type="submit" name="updateArticle" value="Módosítás mentése" />
-		<script>
+		<form action=<?php echo '"index.php?location='.$_GET['location'].'"'; ?> method="post">
+			<textarea type="text" id="text" name="text" rows="10" cols="50"/></textarea><br />
+			<input type="submit" name="saveTitle" value="Fejléc mentése" />
+			<script>
 		    	CKEDITOR.replace('text');
-		</script>
-	</form>	
+		    </script>
+		</form>
 </div>
 </div>
-
-
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

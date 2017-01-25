@@ -45,15 +45,30 @@
 		if(isset($_POST['saveArticle'])){
             Utilities::SaveArticle();
 		}
+
+		//ÚJ FEJLÉC MENTÉSE
+		if(isset($_POST['saveTitle'])){
+            Utilities::SaveTitle();
+		}
 		
 		//CIKK MÓDOSÍTÁSA
 		if(isset($_POST['updateArticle'])){
             Utilities::UpdateArticle();
 		}
 		
+		//FEJLÉC MÓDOSÍTÁSA
+		if(isset($_POST['updateTitle'])){
+            Utilities::UpdateTitle();
+		}
+
 		//CIKK TÖRLÉSE
 		if(isset($_POST['deleteArticle'])){
             Utilities::DeleteArticle();
+		}
+
+		//CIKK TÖRLÉSE
+		if(isset($_POST['deleteTitle'])){
+            Utilities::DeleteTitle();
 		}
 		
 		//VISSZA A FŐOLDALRA

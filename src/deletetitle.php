@@ -15,7 +15,7 @@ $text = $result[0]['text'];
 
 <html>
 	<head>
-		<title>Cikk módosítása</title>
+		<title>Fejléc törlése</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -40,11 +40,8 @@ $text = $result[0]['text'];
 	<div class="col-md-10">
 	<div class="container">
 	<form action=<?php echo '"index.php?articleid='.$_GET['articleid'].'&location='.$_GET['location'];?>" method="post">
-		Cím <br>
-		<textarea type="text" name="title" rows="1" cols="50"/><?php echo $title; ?></textarea><br />
-		Tartalom <br>
 		<textarea type="text" name="text" rows="10" cols="50"/><?php echo $text; ?></textarea><br />
-		<input type="submit" name="updateArticle" value="Módosítás mentése" />
+		<input type="submit" name="deleteArticle" value="Cikk törlése" />
 		<script>
 		    	CKEDITOR.replace('text');
 		</script>
