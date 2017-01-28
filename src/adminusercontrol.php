@@ -2,6 +2,8 @@
 	include_once('process.php');
 	$names = Utilities::GetNameList();
 	
+	error_reporting(E_ALL);
+	ini_set('display_errors','On');
 	
 ?>
 
@@ -97,6 +99,9 @@
 					<div class="col-md-4">
 						<div class="checkbox">
 							<label><input id="admin" name="admin" type="checkbox" value="true">Admin</label>
+						</div>
+						<div class="checkbox">
+							<label><input id="editor" name="editor" type="checkbox" value="true">Szerkesztő</label>
 						</div>
 					</div>
 				</div>
@@ -199,6 +204,9 @@
 						<div class="checkbox">
 							<label><input id="admin" name="admin" type="checkbox" value="true">Admin</label>
 						</div>
+						<div class="checkbox">
+							<label><input id="editor" name="editor" type="checkbox" value="true">Szerkesztő</label>
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -232,6 +240,7 @@ $("#userModModal").on("shown.bs.modal", function (event) {
 			modal.find(".modal-body #email").val(data.email);
 			modal.find(".modal-body #newpw").val('');
 			modal.find(".modal-body #admin").prop('checked', data.admin);
+			modal.find(".modal-body #editor").prop('checked', data.editor);
 		},
 		error: function(jqXHR, textStatus, errorThrown){
           alert(errorThrown);
@@ -267,6 +276,7 @@ $("#newUserModal").on("shown.bs.modal", function (event) {
 	modal.find(".modal-body #email").val('');
 	modal.find(".modal-body #password").val('');
 	modal.find(".modal-body #admin").prop('checked', false);
+	modal.find(".modal-body #editor").prop('checked', false);
 });
 
 

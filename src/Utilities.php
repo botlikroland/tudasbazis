@@ -198,9 +198,10 @@ class Utilities
         $result = $db->query("SELECT lastname, firstname, email FROM login WHERE id = '$id';");
 		$db->close();
 		$admin = Utilities::HasPermission($id,'admin');
+		$editor = Utilities::HasPermission($id,'editor');
 
 		
-		$data = array("lastname"=>$result[0]["lastname"],"firstname"=> $result[0]["firstname"], "email"=>$result[0]["email"], "admin"=> $admin);
+		$data = array("lastname"=>$result[0]["lastname"],"firstname"=> $result[0]["firstname"], "email"=>$result[0]["email"], "admin"=> $admin, "editor"=> $editor);
 		
 		echo json_encode($data);
     }
@@ -239,6 +240,10 @@ class Utilities
 			{
 				Utilities::SetPermission($userid, 'admin', true);
 			}
+			if(isset($_POST['editor']))
+			{
+				Utilities::SetPermission($userid, 'editor', true);
+			}
 			FlashMessage::setMessage("Sikeres felvitel!","success");
 			header("Location: /adminusercontrol.php");
         }
@@ -267,6 +272,14 @@ class Utilities
 		else
 		{
 			Utilities::SetPermission($userid, 'admin', false);
+		}
+		if(isset($_POST['editor']))
+		{
+			Utilities::SetPermission($userid, 'editor', true);
+		}
+		else
+		{
+			Utilities::SetPermission($userid, 'editor', false);
 		}
 		
 		$db = new DB();

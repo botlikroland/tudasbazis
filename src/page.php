@@ -43,8 +43,10 @@ ini_set('display_errors','On');
 	<div class="col-md-10">
 	<div class="container">
 		<div class="text-right btn-toolbar">
-       		<a href=<?php echo 'newarticle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új cikk </a>
-			<a href=<?php echo 'newtitle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új fejléc </a>
+			<?php if(Utilities::HasPermission($_SESSION['userid'],'editor')) { ?>
+       				<a href=<?php echo 'newarticle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új cikk </a>
+					<a href=<?php echo 'newtitle.php?location='.$_GET['pageid']; ?> class="btn btn-primary pull-right"> Új fejléc </a>
+			<?php } ?>
 		</div>
 	
 

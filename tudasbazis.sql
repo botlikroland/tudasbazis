@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost:3306
--- Létrehozás ideje: 2017. Jan 28. 11:10
+-- Létrehozás ideje: 2017. Jan 28. 12:03
 -- Kiszolgáló verziója: 5.6.33
 -- PHP verzió: 5.6.27
 
@@ -75,9 +75,8 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `email`, `password`, `lastname`, `firstname`) VALUES
 (2, 'roland.botlik@profession.hu', '47bce5c74f589f4867dbd57e9ca9f808', 'Botlik', 'Roland'),
-(3, 'kisnykee@gmail.com', '00a3a38e79b300f9538b952c0f2cb9ff', 'Kun', 'Krisztina'),
+(3, 'kisnykee@gmail.com', '47bce5c74f589f4867dbd57e9ca9f808', 'Kun', 'Krisztina'),
 (4, 'melinda.major@profession.hu', '5f0fa8b7a7397a3c1a5e746578bd3e59', 'Major', 'Melinda'),
-(5, 'timea.urkom@profession.hu', '5f0fa8b7a7397a3c1a5e746578bd3e59', 'Urkom', 'Tímea'),
 (6, 'timea.hujber@profession.hu', '5f0fa8b7a7397a3c1a5e746578bd3e59', 'Hujber', 'Tímea');
 
 -- --------------------------------------------------------
@@ -129,7 +128,9 @@ CREATE TABLE `permission` (
 
 INSERT INTO `permission` (`userid`, `permission`) VALUES
 (2, 'admin'),
-(4, 'admin');
+(2, 'editor'),
+(4, 'admin'),
+(4, 'editor');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -172,7 +173,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT a táblához `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT a táblához `menu`
 --
