@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Gép: localhost:3306
--- Létrehozás ideje: 2017. Jan 28. 12:03
--- Kiszolgáló verziója: 5.6.33
--- PHP verzió: 5.6.27
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2017. Jan 28. 17:24
+-- Kiszolgáló verziója: 10.1.16-MariaDB
+-- PHP verzió: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -48,12 +48,42 @@ INSERT INTO `articles` (`id`, `ownerid`, `type`, `location`, `position`, `create
 (26, 2, 'normal', 4, 1, '2017-01-22 21:30:45', '2017-01-22 21:30:45', '2', '<p>2</p>\r\n'),
 (27, 2, 'normal', 4, 2, '2017-01-22 21:30:52', '2017-01-22 21:30:52', '1', '<p>1</p>\r\n'),
 (31, 2, 'title', 11, 1, '2017-01-25 13:01:34', '2017-01-25 13:04:21', 'Ez csak egy fejléc', '<p><span style="font-size:22px"><strong>Folyamatok</strong></span></p>\r\n'),
-(35, 2, 'normal', 11, 3, '2017-01-25 15:55:31', '2017-01-25 15:55:31', 'cikk2', '<p>fhruosigrl</p>\r\n'),
+(35, 2, 'normal', 11, 4, '2017-01-25 15:55:31', '2017-01-25 15:55:31', 'cikk2', '<p>fhruosigrl</p>\r\n'),
 (36, 2, 'normal', 11, 6, '2017-01-25 15:55:46', '2017-01-25 15:55:46', 'másik1', '<p>freghrt</p>\r\n'),
 (37, 2, 'title', 11, 5, '2017-01-25 15:56:08', '2017-01-25 15:56:08', 'Ez csak egy fejléc', '<p><span style="font-size:26px"><span style="font-family:Comic Sans MS,cursive"><strong>Ez egy m&aacute;sik fejl&eacute;c</strong></span></span></p>\r\n'),
-(38, 2, 'normal', 11, 2, '2017-01-25 15:56:21', '2017-01-25 15:56:21', 'blablabla', '<p>fiuewhogk</p>\r\n'),
+(38, 2, 'normal', 11, 3, '2017-01-25 15:56:21', '2017-01-25 15:56:21', 'blablabla', '<p>fiuewhogk</p>\r\n'),
 (39, 2, 'normal', 11, 7, '2017-01-25 16:11:05', '2017-01-25 16:11:05', 'tzfg', '<p>zgfugzih</p>\r\n'),
-(40, 2, 'normal', 11, 4, '2017-01-28 00:49:06', '2017-01-28 00:49:06', 'hvjbdkjkvhbdfnkv', '<p>vsjknv,nsvs</p>\r\n\r\n<h1><span style="font-size:18px"><span style="background-color:#ff0000">vdv</span></span></h1>\r\n\r\n<p>db</p>\r\n\r\n<p>db</p>\r\n');
+(40, 2, 'normal', 11, 2, '2017-01-28 00:49:06', '2017-01-28 00:49:06', 'hvjbdkjkvhbdfnkv', '<p>vsjknv,nsvs</p>\r\n\r\n<h1><span style="font-size:18px"><span style="background-color:#ff0000">vdv</span></span></h1>\r\n\r\n<p>db</p>\r\n\r\n<p>db</p>\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `groupmembership`
+--
+
+CREATE TABLE `groupmembership` (
+  `userid` int(11) NOT NULL,
+  `groupid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `groups`
+--
+
+CREATE TABLE `groups` (
+  `groupid` int(11) NOT NULL,
+  `groupname` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- A tábla adatainak kiíratása `groups`
+--
+
+INSERT INTO `groups` (`groupid`, `groupname`) VALUES
+(1, 'BackOffice'),
+(2, 'Management');
 
 -- --------------------------------------------------------
 
@@ -143,6 +173,12 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`groupid`);
+
+--
 -- A tábla indexei `login`
 --
 ALTER TABLE `login`
@@ -169,6 +205,11 @@ ALTER TABLE `permission`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT a táblához `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `groupid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT a táblához `login`
 --
